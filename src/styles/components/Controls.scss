@@ -14,6 +14,15 @@
       width: 2.75em;
       height: 2.75em;
       cursor: pointer;
+
+      &:hover {
+        background-color: $lighter-sky-blue;
+      }
+
+      &:active {
+        background-color: $lighter-sky-blue;
+        box-shadow: inset 3px 3px 5px $darker-sky-blue;
+      }
     }
     
     & .start_stop {

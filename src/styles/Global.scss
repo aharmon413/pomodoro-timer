@@ -16,7 +16,10 @@ html {
 }
   
 body {
+    height: 100vh;
+    width: 100vw;
     color: $darkest-blue;
     background: $bright-green;
+    background: radial-gradient(circle, $bright-green 0%, $lighter-green 95%);
     font-family: 'Ubuntu', sans-serif;
 }
