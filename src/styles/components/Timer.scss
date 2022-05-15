@@ -2,6 +2,7 @@
 
 .timer {
     background: $lightest-beige;
+    border: 2px solid $darkest-blue;
     width: clamp(17.1875em, 80%, 31.25em);
     margin: 0 auto;
     padding: .75em;

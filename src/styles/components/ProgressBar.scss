@@ -1,8 +1,5 @@
 @use '../variables/Colors.scss' as *;
 
-// maybe add a border to the progress bar?
-// or a darker background. not a lot of cnotrast in some browsers
-
 .progress {
     position: relative;
     width: 90%;
@@ -17,7 +14,8 @@
     & .progress-bar[value] {
       -webkit-appearance: none;
       -moz-appearance: none;
-      border: none;
+      border: 2px solid $darkest-blue;
+      border-radius: 6px;
       appearance: none;
       width: 100%;
       height: 5em;
@@ -52,4 +50,20 @@
         font-weight: bold;
       }
     }
+}
+
+@keyframes shake {
+  0% { transform: translate(0) }
+  25% { transform: translate(3px) }
+  50% { transform: translate(-3px) }
+  75% { transform: translate(3px) }
+  100% { transform: translate(0) }
+}
+
+.times-up {
+  animation: shake .5s linear 7 1s;
+
+  @media (prefers-reduced-motion: reduce) {
+      animation: none;
+  }
 }

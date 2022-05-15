@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import stopAudio from '../functions/stopAudio';
 import TimeBlockLengthSetter from "./TimeBlockLengthSetter";
 import ProgressBar from "./ProgressBar";
 import Controls from "./Controls";
@@ -9,6 +10,7 @@ const Timer = () => {
     const [isSession, setIsSession] = useState(true);
     const [timeRemaining, setTimeRemaining] = useState(1500);
     const [timerRunning, setTimerRunning] = useState(false);
+    const [timesUp, setTimesUp] = useState(false);
 
     const audioRef = useRef();
 
@@ -38,12 +40,16 @@ const Timer = () => {
           setTimerRunning(true);  
           window.timerId = setInterval(() => updateTimer(), 1000);
         } else {
+          stopAudio(audioRef);
+          setTimesUp(false);
           setTimerRunning(false);
           clearInterval(window.timerId);
     }
         
     const updateTimer = () => {
           if (timeLeft === 0) {
+            setTimesUp(true);
+            setTimeout(() => setTimesUp(false), 7000);
             audioRef.current.play();
           // when a time block ends: clear the old timer, grab the next time block's length, 
           // update state, update timeLeft with the new time block length, and start a new timer
@@ -63,8 +69,8 @@ const Timer = () => {
     
     const resetTimer = () => {
         clearInterval(window.timerId);
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+        stopAudio(audioRef);
+        setTimesUp(false);
         setIsSession(true);
         setTimeRemaining(sessionLength);
         setTimerRunning(false);
@@ -90,7 +96,8 @@ const Timer = () => {
           <ProgressBar 
             isSession={isSession}
             timeRemaining={timeRemaining}
-            progressBarMax={isSession ? sessionLength : breakLength}/>
+            progressBarMax={isSession ? sessionLength : breakLength}
+            timesUp={timesUp} />
 
           <Controls
             startStopTimer={startStopTimer}
