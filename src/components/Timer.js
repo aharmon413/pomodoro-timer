@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
 import TimeBlockLengthSetter from "./TimeBlockLengthSetter";
 import ProgressBar from "./ProgressBar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import Controls from "./Controls";
 
 const Timer = () => {
     const [sessionLength, setSessionLength] = useState(1500);
@@ -73,21 +72,33 @@ const Timer = () => {
 
     return ( 
         <main className="timer">
-        <div className="emojis">🍅⏲️</div>
+          <div className="emojis">🍅⏲️</div>
+          
+          <TimeBlockLengthSetter 
+            label="session" 
+            value={parseInt(sessionLength / 60)} 
+            onClickInc={() => incrementTimeBlock('session')} 
+            onClickDec={() => decrementTimeBlock('session')} 
+            timerRunning={timerRunning} />
+          <TimeBlockLengthSetter 
+            label="break"
+            value={parseInt(breakLength / 60)}
+            onClickInc={() => incrementTimeBlock('break')}
+            onClickDec={() => decrementTimeBlock('break')} 
+            timerRunning={timerRunning} />
 
-        <TimeBlockLengthSetter label="session" value={parseInt(sessionLength / 60)} onClickInc={() => incrementTimeBlock('session')} onClickDec={() => decrementTimeBlock('session')} timerRunning={timerRunning} />
+          <ProgressBar 
+            isSession={isSession}
+            timeRemaining={timeRemaining}
+            progressBarMax={isSession ? sessionLength : breakLength}/>
 
-        <TimeBlockLengthSetter label="break" value={parseInt(breakLength / 60)} onClickInc={() => incrementTimeBlock('break')} onClickDec={() => decrementTimeBlock('break')} timerRunning={timerRunning} />
-
-        <ProgressBar isSession={isSession} timeRemaining={timeRemaining} progressBarMax={isSession ? sessionLength : breakLength}/>
-
-        {/* make Controls its own component later*/}
-        <div className="controls">
-          <button type="button" className="start_stop" id="start_stop" onClick={startStopTimer} aria-label={timerRunning ? 'Pause timer' : 'Start timer'}>{timerRunning ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}</button>
-          <button type="button" className="reset" id="reset" onClick={resetTimer} aria-label="Reset timer"><FontAwesomeIcon icon={faSyncAlt} /></button>
-        </div>
-        <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" ref={audioRef}></audio>
-      </main>
+          <Controls
+            startStopTimer={startStopTimer}
+            resetTimer={resetTimer}
+            timerRunning={timerRunning} />
+          
+          <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" ref={audioRef}></audio>
+        </main>
      );
 }
  
