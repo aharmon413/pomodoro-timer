@@ -1,0 +1,55 @@
+@use '../variables/Colors.scss' as *;
+
+// maybe add a border to the progress bar?
+// or a darker background. not a lot of cnotrast in some browsers
+
+.progress {
+    position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: 500px) {
+      grid-area: 3 / 1 / 5 / 3;
+    }
+    
+    & .progress-bar[value] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: none;
+      appearance: none;
+      width: 100%;
+      height: 5em;
+      color: $tomato-red;
+      
+      &::-webkit-progress-bar {
+        background-color: $light-beige;
+        border-radius: 3px;
+        box-shadow: 0 2px 5px $warm-gray inset;
+      }
+      
+      &::-webkit-progress-value {
+        background-color: $tomato-red;
+        border-radius: 3px;
+      }
+      
+      &::-moz-progress-bar {
+        background-color: $tomato-red;
+        border-radius: 3px;
+      }
+    }
+    
+    & label {
+      position: absolute;
+      font-size: 1.75em;
+      text-align: center;
+      text-transform: capitalize;
+      top: .3em;
+      
+      & .time-left {
+        display: block;
+        font-weight: bold;
+      }
+    }
+}

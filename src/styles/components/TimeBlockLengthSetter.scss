@@ -1,0 +1,31 @@
+@use '../variables/Colors.scss' as *;
+
+.length-setter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    & h2 {
+      font-size: 1.2em;
+      text-align: center;
+      text-transform: capitalize;
+      width: 100%;
+    }
+    
+    .time-length {
+      font-size: 2.75em;
+      font-weight: bold;
+      width: 35%;
+      text-align: center;
+    }
+    
+    .increment, .decrement {
+      color: #fff;
+      background: $bright-green;
+      border-radius: 50%;
+      border: none;
+      width: 2.15em;
+      height: 2.15em;
+    }
+}
