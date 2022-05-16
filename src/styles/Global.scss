@@ -4,6 +4,7 @@
 @use './components/ProgressBar.scss' as *;
 @use './components/Controls.scss' as *;
 @use './components/Quote.scss' as *;
+@use './components/Footer.scss' as *;
 
 html {
     box-sizing: border-box;
@@ -28,6 +29,15 @@ body {
 h1 {
     font-size: 2.75em;
     margin-bottom: .2em;
+}
+
+a {
+    color: $lightest-beige;
+    font-style: italic;
+
+    &:hover, &:focus {
+        color: #fff;
+    }
 }
 
 .app {

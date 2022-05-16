@@ -3,15 +3,6 @@
 .header {
     text-align: center;
     margin-bottom: 1em;
-
-    .learn-more {
-        color: $lightest-beige;
-        font-style: italic;
-
-        &:hover, &:focus {
-            color: #fff;
-        }
-    }
 }
 
 .timer {
