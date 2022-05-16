@@ -6,7 +6,7 @@ const Quote = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(
-                'http://api.quotable.io/random?maxLength=151'
+                'https://api.quotable.io/random?maxLength=151'
             );
 
             const data = await response.json();
