@@ -61,7 +61,7 @@
 }
 
 .times-up {
-  animation: shake .5s linear 7 1s;
+  animation: shake .5s linear 7 .75s;
 
   @media (prefers-reduced-motion: reduce) {
       animation: none;

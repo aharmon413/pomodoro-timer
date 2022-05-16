@@ -33,8 +33,8 @@ const Timer = () => {
     };
    
     const startStopTimer = () => {
-        let timeBlock = isSession ? sessionLength : breakLength;
-        var timeLeft = timeBlock > timeRemaining ? timeRemaining : timeBlock;
+        window.timeBlock = isSession ? sessionLength : breakLength;
+        window.timeLeft = window.timeBlock > timeRemaining ? timeRemaining : window.timeBlock;
         
         if (!timerRunning) {
           setTimerRunning(true);  
@@ -44,32 +44,32 @@ const Timer = () => {
           setTimesUp(false);
           setTimerRunning(false);
           clearInterval(window.timerId);
+        }
     }
         
     const updateTimer = () => {
-          if (timeLeft === 0) {
+          if (window.timeLeft === 0) {
             setTimesUp(true);
             setTimeout(() => setTimesUp(false), 7000);
-            audioRef.current.play();
+            if (!audioRef.muted) audioRef.current.play();
           // when a time block ends: clear the old timer, grab the next time block's length, 
           // update state, update timeLeft with the new time block length, and start a new timer
             clearInterval(window.timerId);
-            timeBlock = isSession ? breakLength : sessionLength;
-            let newTimeRemaining = timeBlock;
+            window.timeBlock = isSession ? breakLength : sessionLength;
+            let newTimeRemaining = window.timeBlock;
             setTimeRemaining(newTimeRemaining);
             setIsSession((prevState) => !prevState);
-            timeLeft = timeBlock > newTimeRemaining ? newTimeRemaining : timeBlock;
+            window.timeLeft = window.timeBlock > newTimeRemaining ? newTimeRemaining :window.timeBlock;
             window.timerId = setInterval(() => updateTimer(), 1000);
           } else {
-            timeLeft--;
-            setTimeRemaining(timeLeft);
+            window.timeLeft--;
+            setTimeRemaining(window.timeLeft);
           }
-        }
     }
     
     const resetTimer = () => {
         clearInterval(window.timerId);
-        stopAudio(audioRef);
+        if (!audioRef.muted) stopAudio(audioRef);
         setTimesUp(false);
         setIsSession(true);
         setTimeRemaining(sessionLength);
@@ -102,7 +102,8 @@ const Timer = () => {
           <Controls
             startStopTimer={startStopTimer}
             resetTimer={resetTimer}
-            timerRunning={timerRunning} />
+            timerRunning={timerRunning}
+            audioRef={audioRef} />
           
           <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" ref={audioRef}></audio>
         </main>

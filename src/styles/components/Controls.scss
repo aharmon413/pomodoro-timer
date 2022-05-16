@@ -8,7 +8,7 @@
     & button {
       background-color: $sky-blue;
       color: #fff;
-      border: none;
+      border: 1px solid $warm-gray;
       border-radius: 50%;
       font-size: 1.25em;
       width: 2.75em;
@@ -25,7 +25,7 @@
       }
     }
     
-    & .start_stop {
+    & .start_stop, & .reset {
       margin-right: .5em;
     }
 }
