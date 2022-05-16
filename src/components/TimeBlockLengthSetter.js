@@ -5,9 +5,9 @@ const TimeBlockLengthSetter = ({ label, onClickDec, onClickInc, timerRunning, va
     return ( 
         <div className="length-setter">
             <h2 id={label + '-label'}>{label} Length</h2>
-        <button type="button" id={label + '-decrement'} className="decrement" onClick={onClickDec} disabled={timerRunning} aria-label={'Decrement' + label}><FontAwesomeIcon icon={faChevronDown} /></button>
-        <p id={label + '-length'} className="time-length">{value}</p>
-        <button type="button" id={label + '-increment'} className="increment" onClick={onClickInc} disabled={timerRunning} aria-label={'Increment' + label}><FontAwesomeIcon icon={faChevronUp} /></button>
+            <button type="button" id={label + '-decrement'} data-testid="decrement" className="decrement" onClick={onClickDec} disabled={timerRunning} aria-label={'Decrement' + label}><FontAwesomeIcon icon={faChevronDown} /></button>
+            <p id={label + '-length'} data-testid="time-length" className="time-length">{value}</p>
+            <button type="button" id={label + '-increment'} data-testid="increment" className="increment" onClick={onClickInc} disabled={timerRunning} aria-label={'Increment' + label}><FontAwesomeIcon icon={faChevronUp} /></button>
         </div>
      );
 }

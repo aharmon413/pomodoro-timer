@@ -7,7 +7,7 @@ const Controls = ({ startStopTimer, resetTimer, timerRunning, audioRef }) => {
 
     return ( 
         <div className="controls">
-          <button type="button" className="start_stop" id="start_stop"
+          <button type="button" className="start_stop" id="start_stop" data-testid='start-stop'
             onClick={startStopTimer}
             aria-label={timerRunning ? 'Pause timer' : 'Start timer'}>
               {timerRunning ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} />}
