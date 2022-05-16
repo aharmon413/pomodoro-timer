@@ -1,0 +1,19 @@
+@use '../variables/Colors.scss' as *;
+
+.quote {
+    color: #fff;
+    background: $darker-green;
+    margin-top: 1.5em;
+    padding: 1em;
+
+    .quote-content {
+        border-left: 5px solid $bright-green;
+        padding-left: .75em;
+    }
+
+    .quote-author {
+        text-align: right;
+        font-style: italic;
+        padding-top: .25em
+    }
+}

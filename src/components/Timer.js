@@ -76,8 +76,13 @@ const Timer = () => {
         setTimerRunning(false);
     }
 
-    return ( 
-        <main className="timer">
+    return (
+      <>
+      <div className="header">
+        <h1>{isSession ? "Let's get to work!" : "Time for a break!"}</h1>
+        <a href="https://francescocirillo.com/pages/pomodoro-technique" target="_blank" className="learn-more">Learn more about the Pomodoro Technique</a>
+      </div>
+        <div className="timer">
           <div className="emojis">🍅⏲️</div>
           
           <TimeBlockLengthSetter 
@@ -106,7 +111,8 @@ const Timer = () => {
             audioRef={audioRef} />
           
           <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" ref={audioRef}></audio>
-        </main>
+        </div>
+      </>
      );
 }
  

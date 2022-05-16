@@ -1,17 +1,25 @@
 @use '../variables/Colors.scss' as *;
 
+.header {
+    text-align: center;
+    margin-bottom: 1em;
+
+    .learn-more {
+        color: $lightest-beige;
+        font-style: italic;
+
+        &:hover, &:focus {
+            color: #fff;
+        }
+    }
+}
+
 .timer {
     background: $lightest-beige;
-    border: 2px solid $darkest-blue;
-    width: clamp(17.1875em, 80%, 31.25em);
     margin: 0 auto;
     padding: .75em;
     border-radius: 10px;
     box-shadow: 0 0 15px $warm-gray;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: grid;
     grid-row-gap: 1em;
     justify-items: center;

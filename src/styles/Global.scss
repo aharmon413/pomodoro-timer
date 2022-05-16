@@ -3,6 +3,7 @@
 @use './components/TimeBlockLengthSetter.scss' as *;
 @use './components/ProgressBar.scss' as *;
 @use './components/Controls.scss' as *;
+@use './components/Quote.scss' as *;
 
 html {
     box-sizing: border-box;
@@ -22,4 +23,30 @@ body {
     background: $bright-green;
     background: radial-gradient(circle, $bright-green 0%, $lighter-green 95%);
     font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+    font-size: 2.75em;
+    margin-bottom: .2em;
+}
+
+.app {
+    padding: 3em 0 3em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: 900px) {
+        height: 100vh;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+.header, .timer, .quote {
+    width: clamp(17.1875em, 80%, 31.25em);
+}
+
+.timer, .quote {
+    border: 2px solid $darkest-blue;
 }
